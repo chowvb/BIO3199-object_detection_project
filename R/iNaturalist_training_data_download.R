@@ -3,7 +3,6 @@ library(sf)
 library(keras)
 library(dplyr)
 
-
 get_recs <- function(name,taxon_id){
   bounds <- readRDS("gb_simple.RDS")
   maxresults <- 100
@@ -13,7 +12,7 @@ get_recs <- function(name,taxon_id){
   recs <- recs[,c("scientific_name","image_url")]
   rownames(recs) = seq(length = nrow(recs))
   return(recs)}
-download_images <- function(spp_recs =NULL, image_folder ="~/BIO3199 Project/Python/images/raw_images",spp_folder=NULL){
+download_images <- function(spp_recs =NULL, image_folder =("~/BIO3199/Python/training_data/raw_images"),spp_folder=NULL){
   dir.create(image_folder, showWarnings = FALSE)
   if(is.null(spp_recs)|is.null(spp_folder)){
     print("Please set up spp_recs and spp_folder")
@@ -28,8 +27,8 @@ download_images <- function(spp_recs =NULL, image_folder ="~/BIO3199 Project/Pyt
   }
 }
 
-bird_list <- read.csv("training_species_list.csv")
 
+bird_list <- read.csv("training_species_list.csv")
 for (i in 1:nrow(bird_list)){
   name <- bird_list$name[i]
   taxon_id <- as.character(bird_list$taxon_id[i])
@@ -43,6 +42,6 @@ for (i in 1:nrow(bird_list)){
 #' number of folders ie. the number of species the species identification model
 #' is going to be trained on. 
 for (species in bird_list$name){
-  num_files = as.character(length(list.files(paste0("~/BIO3199 Project/Python/images/raw_images/",species))))
+  num_files = as.character(length(list.files(paste0("~/BIO3199/Python/training_data/raw_images",species))))
   print(paste0(num_files," images of ", species))
 }  
