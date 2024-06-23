@@ -1,2 +1,7 @@
 /__pycache__
 /New_Folder
+/Custom_image_classification/Python/training_data
+/Custom_image_classification/Python/test_data
+/Custom_image_classification/Python/crop_log
+/Custom_image_classification/Python/cm_dataset
+/Custom_image_classification/Python/.ipynb_checkpoints
