@@ -130,3 +130,59 @@ an RGB image with 3 colour channels
 model = make_model(input_shape= image_size +(3,),num_classes = classes)
 model.summary()
 #keras.utils.plot_model(model,show_shapes=True) 
+
+# Train the model 
+epochs = 15 # Epochs are the number of loops, this number can vary depending on model over/underfitting. 
+callbacks = [
+    keras.callbacks.ModelCheckpoint(
+        filepath = "Scpecies_Classification_Model.h5",
+        save_best_only=True,
+        monitor = "val_loss"
+    )
+]
+
+# Compile the model. 
+model.compile(
+    # optimizer = "rsmprop",
+    optimizer = keras.optimizers.Adam(),
+    loss = "categorical_crossentropy",
+    metrics = ["accuracy"]
+)
+
+# Fitting the model
+history = model.fit(
+    train_dataset,
+    epochs = epochs,
+    callbacks = callbacks,
+    validation_data = validation_dataset,
+    shuffle = True
+)
+
+# Displaying curves and graphs for loss and accuracy during training
+import matplotlib.pyplot as plt
+accuracy = history.history["accuracy"]
+val_accuracy = history.history["val_accuracy"]
+loss = history.history["loss"]
+val_loss = history.history["val_loss"]
+epochs = range(1, len(accuracy) + 1)
+
+
+# Create the plot for model accuracy 
+plt.plot(epochs, accuracy, "bo", label = "Training Accuracy")
+plt.plot(epochs, val_accuracy, "b", label = "Validation Accuracy")
+plt.ylabel("Accuracy %")
+plt.xlabel("Epochs")
+plt.title("Training and Validation Accuracy")
+plt.legend()
+plt.savefig("Species_Classification_Accuracy.png")
+plt.figure()
+
+# Creating a plot for the model loss
+plt.plot(epochs, loss, "bo", label = "Training Loss")
+plt.plot(epochs, val_loss, "b", label = "Validation Loss")
+plt.ylabel("Loss")
+plt.xlabel("Epochs")
+plt.title("Training and Validation Loss")
+plt.legend()
+plt.savefig("Species_Classification_Loss.png")
+plt.figure()
