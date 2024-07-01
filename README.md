@@ -1,5 +1,13 @@
 # Newcastle University Research Dissertation Thesis 
 Using Deep Learning to Investigate Food Preferences in Small UK Garden Birds During Winter.
+### Folders in this repo
+There are two folders in this repository:  
+1) Project_22-23  
+   This contains an unaltered version of my project code (Which most likey will no longer work). Within the data folders (Containing images) I have stripped back the number of images to only a few just for display purposes. In my Thesis I collated roughtly 30,000 images.
+2) Custom_image_classification  
+   This folder will soon contain adapted code to run directly using python rather than jupyter notebooks. I will be doing my best to debug and adapt the original code to work in any environments. This folder wont contain any of the data that the project contains as I want to make the this model completly customisible to users.  
+   There will be a set-up script that will create all the correct local folders for the code to run smoothly on. 
+
 
 ## Pre-requisites
 This repository contains all of the code used in my final year project. Some of the code may not work currently. I am adapting it to work on smaller datasets.  
